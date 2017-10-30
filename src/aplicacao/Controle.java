@@ -36,27 +36,33 @@ public class Controle {
 		
 		try{
 			
+			String conta = null, origem = null, destino = null;
+			
 			contas = arquivo.remove(arquivo.size()-1);
-			//System.out.println(contas[0] + " " + contas[1]);
+			String inicio = contas[0].trim(), fim = contas[1].trim();
+			
+			
 			
 			for(String[] vet : getArquivo()){
 
 				
-				String conta = vet[0];  //Integer.parseInt(vet[0]);
-				String origem = vet[1];
-				String destino = vet[2];
+				conta = vet[0];  //Integer.parseInt(vet[0]);
+				origem = vet[1];
+				destino = vet[2];
 				
 				grafo.addVizinho(origem, destino);
 				grafo.addVizinho(destino,origem);
 				grafo.addAresta(conta, origem, destino);
 				grafo.addAresta(conta, destino, origem);
-				//grafo.buscarConta(destino,origem);
+				grafo.buscarConta(destino,origem);
 				
-				//System.out.println("Origem: " + origem + "   Destino: " + destino);
-				/*Nodo nodoOrigem = grafo.addNodo(origem);
-				Nodo nodoDestino = grafo.addNodo(destino);
-				arestas = (List<Aresta>) grafo.addAresta(conta, nodoOrigem, nodoDestino);*/	
+				
+				
 			}
+			
+			grafo.caminhamento(inicio, fim);
+			
+			System.out.println(grafo.apresentação(inicio, fim));
 			
 		}catch (NullPointerException  e){
 			return false;
