@@ -30,39 +30,14 @@ public class IO {
 			//	 	linha.split(" ", 3) -> vet[0] = "123", vet[1] = "Maria" e vet[2] = "João"	
 		}
 		
+		linha = lerArq.readLine();
+		lista.add(linha.split(" ", 2));
+		
 		return lista;
 		
 	}
 	
-	public static List<String[]> carregarTranferencia(String arquivo) throws IOException{
-		
-		List<String[]> lista = new LinkedList<String[]>();
-		
-		FileReader arq = new FileReader(arquivo);
-	    BufferedReader lerArq = new BufferedReader(arq);
-		
-	    int quantidade = Integer.parseInt(lerArq.readLine()); // Lê a primeira linha.
-		int aux = 1;
-		String linha = null;
-		
-		quantidade += 2;
-		
-		
-		while (aux != quantidade) {   
-			
-			if(aux == quantidade){
-				linha = lerArq.readLine();
-				lista.add(linha.split(" ", 2));
-				aux++;
-				// Cada linha tera um vetor de duas posições: Ex:
-				//		linha = "Maria João"
-				//	 	linha.split(" ", 2) -> vet[0] = "Maria" e vet[1] = "João"	
-			} else aux++;
-		}
-		
-		return lista;
-		
-	}
+	
 	
 	
 }

@@ -1,73 +1,73 @@
-//------------------------------------------------------
 package aplicacao;
 //------------------------------------------------------
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 //------------------------------------------------------
 
-public class Grafo {
-   
-	public class Nodo { // Classe Nodo (Classe interna de grafo).
-        String nome;
-        List<Aresta> adjacentes; // Lista de adjacências.
+public class Grafo{
 
-        public Nodo(String nome) { // Construtor do Nodo.
-            this.nome = nome;
-            this.adjacentes = new ArrayList<Aresta>();
-        }
+	Map<String, List<String>> dicionario;
+	Map<String, String> dicArestas;
+	List<String> vizinhos;
+	String aresta;
+	
+	public Grafo(){
+		dicionario = new HashMap<>();
+		dicArestas = new HashMap<>();
+	}
+	
+	public void addVizinho(String origem, String destino){
+		
+		vizinhos = dicionario.get(origem);
 
-        void addAdjacente(Aresta a) { // Adiciona um adjacente na lista.
-        	adjacentes.add(a);
-        }
-    }
+		if (vizinhos == null) {
+		    vizinhos = new ArrayList<>();
+		    dicionario.put(origem, vizinhos);
+		}
+		
+		vizinhos.add(destino);
+		
+		//System.out.println(dicionario);
+	}
+	
+	public void addAresta(String conta,String origem, String destino){
+		
+		aresta = dicArestas.get(origem + " " + destino);
 
-    public class Aresta { // Classe Aresta (Classe interna de grafo).
-    	int valor;
-    	Nodo origem;
-    	Nodo destino;
+		if (aresta == null) dicArestas.put(origem + " " + destino, aresta);
+			
+		dicArestas.put(origem + " " + destino, conta);
+		
+		//System.out.println(dicArestas);
+		
+	}
+	
+	public void buscarConta(String origem, String destino){
+		
+		String teste = dicArestas.get(origem + " " + destino);
+		
+		System.out.println(teste);
+		
+	}
+	
+	public void caminhamento(String origem, String destino){
+		
+		//Fila fila = new Fila(ini);
+		
+	}	
+	
+	public void setVizinhos(List<String> vizinhos) {
+		this.vizinhos = vizinhos;
+	}
+	
+	
 
-        public Aresta(int valor,Nodo origem, Nodo destino) { // Construtor da Aresta.
-        	this.valor = valor;
-            this.origem = origem;
-            this.destino = destino;
-        }
-        
-        public int getValor() {
-    		return valor;
-    	}
-    }
-
-    List<Nodo> nodos; // Lista de nodos.
-    List<Aresta> arestas; // Lista de arestas.
-
-    public Grafo() { // Construtor do Grafo.
-    	nodos = new ArrayList<Nodo>();
-        arestas = new ArrayList<Aresta>();
-    }
-
-    public Nodo addNodo(String nome) { // Adiciona um novo nodo ao Grafo.
-    	Nodo v = new Nodo(nome);
-    	nodos.add(v);
-        return v;
-    }
-
-    public Aresta addAresta(int valor, Nodo origem, Nodo destino) { // Adiciona um nova aresta ao Grafo.
-        Aresta a = new Aresta(valor, origem, destino);
-        origem.addAdjacente(a);
-        arestas.add(a);
-        return a;
-    }
-
-    public String toString() { // Apresenta em tela a lista de nodos e seus adjacentes - Usado para teste.
-        String r = "";
-        for (Nodo nodo : nodos) {
-            r += nodo.nome + ": ";
-            for (Aresta a : nodo.adjacentes) {
-            	Nodo v = a.destino;
-                r += v.nome + ", ";
-            }
-            r += "\n";
-        }
-        return r;
-    }
 }
+	
+	
+	
+
+
