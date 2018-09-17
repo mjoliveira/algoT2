@@ -31,8 +31,6 @@ public class Grafo{
 		}
 		
 		vizinhos.add(destino);
-		
-		//System.out.println(dicionario);
 	}
 	
 	public void addAresta(String conta,String origem, String destino){
@@ -42,8 +40,6 @@ public class Grafo{
 		if (aresta == null) dicArestas.put(origem + " " + destino, aresta);
 			
 		dicArestas.put(origem + " " + destino, conta);
-		
-		//System.out.println(dicArestas);
 		
 	}
 	

@@ -23,7 +23,7 @@ public class Main {
 		System.out.println("Carregamento do arquivo " + nome + "... " + aux);
 		
 		aux = (controle.gerarGrafo())?"Concluído!" :"Falha no carregamento.";
-		System.out.println("Gerando o Grafo... " + aux);
+		//System.out.println("Gerando o Grafo... " + aux);
         
         // calculo do tempo final do sistema.
         long tempoFinal = System.currentTimeMillis();
